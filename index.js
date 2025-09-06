@@ -3,13 +3,15 @@ const textInput = document.getElementById('textInput');
 const generatedTextContainer = document.getElementById('generatedTextContainer');
 
 generateBtn.addEventListener('click', () => {
-    generatedTextContainer.children.array.forEach(child => {
-        generatedTextContainer.removeChild(child);
-    });
+    generateBtn.innerHTML = "Generating...";
     let requestPost = new XMLHttpRequest();
     requestPost.open("POST", `https://sasasaia.pythonanywhere.com/chatbot?message=${textInput.value}`);
     requestPost.onreadystatechange = function (){
         if (requestPost.status == 200 && requestPost.readyState == 4){
+            while (generatedTextContainer.firstChild){
+                generatedTextContainer.removeChild(generatedTextContainer.firstChild);
+            }
+            generateBtn.innerHTML = "Chat";
             let response = requestPost.responseText;
             let p = document.createElement('p');
             p.innerHTML = response;

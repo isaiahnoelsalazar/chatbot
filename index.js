@@ -4,6 +4,7 @@ const generatedTextContainer = document.getElementById('generatedTextContainer')
 
 generateBtn.addEventListener('click', () => {
     generateBtn.innerHTML = "Generating...";
+    generateBtn.disabled = true;
     let requestPost = new XMLHttpRequest();
     requestPost.open("POST", `https://sasasaia.pythonanywhere.com/chatbot?message=${textInput.value}`);
     requestPost.onreadystatechange = function (){
@@ -12,6 +13,7 @@ generateBtn.addEventListener('click', () => {
                 generatedTextContainer.removeChild(generatedTextContainer.firstChild);
             }
             generateBtn.innerHTML = "Chat";
+            generateBtn.disabled = false;
             let response = requestPost.responseText;
             let p = document.createElement('p');
             p.innerHTML = response;

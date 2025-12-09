@@ -1,6 +1,7 @@
 const generateBtn = document.getElementById('generateBtn');
 const textInput = document.getElementById('textInput');
 const generatedTextContainer = document.getElementById('generatedTextContainer');
+const messageArea = document.getElementById('message-area');
 
 generateBtn.addEventListener('click', () => {
     generateBtn.innerHTML = "Generating...";
@@ -18,6 +19,8 @@ generateBtn.addEventListener('click', () => {
             let p = document.createElement('p');
             p.innerHTML = response;
             generatedTextContainer.appendChild(p);
+            generatedTextContainer.style.display = "block";
+            generatedTextContainer.style.marginBottom = (messageArea.offsetHeight + 32) + "px";
         }
     }
     requestPost.send();
